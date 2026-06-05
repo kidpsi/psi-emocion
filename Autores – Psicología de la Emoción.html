@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>Autores – Psicología de la Emoción</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#fafaf9;color:#1a1a1a;padding:1rem}
+h1{font-size:18px;font-weight:500;margin-bottom:1rem}
+.controls{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+input{flex:1;min-width:180px;font-size:13px;padding:7px 10px;border:1px solid #d1d1cc;border-radius:8px;background:#fff}
+select{font-size:13px;padding:7px 10px;border:1px solid #d1d1cc;border-radius:8px;background:#fff;cursor:pointer}
+.legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;font-size:11.5px}
+.legend span{display:flex;align-items:center;gap:4px}
+.dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-weight:500;font-size:11.5px;color:#666;text-align:left;padding:8px 10px;border-bottom:1px solid #e5e5e0;background:#f4f4f0;position:sticky;top:0}
+th:nth-child(1){width:15%}th:nth-child(2){width:25%}th:nth-child(3){width:60%}
+td{padding:9px 10px;border-bottom:1px solid #ebebeb;vertical-align:top;line-height:1.5}
+tr:hover td{background:#f7f7f5}
+.author{font-weight:500}
+.badge{display:inline-block;font-size:10.5px;padding:2px 7px;border-radius:20px;margin-bottom:3px}
+.bg-fis{background:#dbeafe;color:#1e40af}
+.bg-cog{background:#ede9fe;color:#4c1d95}
+.bg-bio{background:#d1fae5;color:#065f46}
+.bg-soc{background:#fee2e2;color:#991b1b}
+.bg-per{background:#fef3c7;color:#78350f}
+.bg-pos{background:#dcfce7;color:#14532d}
+.teoria{font-size:12.5px;color:#333;margin-top:2px}
+.desc{color:#555}
+.empty{padding:2rem;text-align:center;color:#888}
+</style>
+<style>.ib-serp {
+  display: flex;
+  align-items: center;
+  height: 22px;
+  position: relative;
+  line-height: 22px;
+  border-radius: 5px;
+  border-collapse: initial;
+  text-decoration: none !important;
+  background-size: contain;
+  background-position: 5px center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+.ib-serp b span {
+  color: inherit !important;
+  font-weight: bold !important;
+}
+.ib-serp__link {
+  text-decoration: underline;
+}
+.ib-serp__link /deep/ span {
+  color: inherit !important;
+  font-weight: bold !important;
+}
+.ib-serp__logo {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background-size: contain;
+  background-position: 5px center;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 2px;
+}
+.ib-serp__text {
+  display: inline-block;
+  font-family: 'Roboto', Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+</style><style>@font-face {
+  font-family: 'Roboto';
+  src: url([object Module]);
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url([object Module]);
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url([object Module]);
+  font-weight: bold;
+}
+</style></head>
+<body>
+<h1>Autores y teorías — Psicología de la Emoción</h1>
+<div class="controls">
+  <input type="text" id="q" placeholder="Buscar autor, teoría o concepto…" oninput="filter()">
+  <select id="cat" onchange="filter()">
+    <option value="" selected="selected">Todas las áreas</option>
+    <option value="fis">Fisiológica</option>
+    <option value="cog">Cognitiva / Appraisal</option>
+    <option value="bio">Biológica / Neuro</option>
+    <option value="soc">Emoción-cognición</option>
+    <option value="per">Personalidad / Ansiedad</option>
+    <option value="pos">Bienestar / Social</option>
+  </select>
+</div>
+<div class="legend">
+  <span><span class="dot" style="background:#3b82f6"></span>Fisiológica</span>
+  <span><span class="dot" style="background:#7c3aed"></span>Cognitiva/Appraisal</span>
+  <span><span class="dot" style="background:#059669"></span>Biológica/Neuro</span>
+  <span><span class="dot" style="background:#dc2626"></span>Emoción-cognición</span>
+  <span><span class="dot" style="background:#d97706"></span>Personalidad/Ansiedad</span>
+  <span><span class="dot" style="background:#16a34a"></span>Bienestar/Social</span>
+</div>
+<table>
+<thead><tr><th>Autor</th><th>Teoría / Concepto clave</th><th>Descripción</th></tr></thead>
+<tbody id="tb"><tr>
+    <td><div class="author">Darwin</div></td>
+    <td><span class="badge bg-bio">Biológica/Neuro</span><div class="teoria">Teoría evolucionista</div></td>
+    <td class="desc">Las emociones tienen función adaptativa y son 
+producto de la filogenia. Existen emociones primarias con expresión 
+facial universal e innata; la expresión emocional muestra continuidad 
+entre especies.</td>
+  </tr><tr>
+    <td><div class="author">James / Lange</div></td>
+    <td><span class="badge bg-fis">Fisiológica</span><div class="teoria">Teoría periférica (James-Lange)</div></td>
+    <td class="desc">La emoción es la percepción de los cambios 
+corporales: sentimos miedo porque temblamos, no al revés. Cada emoción 
+requiere un patrón somato-visceral propio y específico.</td>
+  </tr><tr>
+    <td><div class="author">Cannon</div></td>
+    <td><span class="badge bg-fis">Fisiológica</span><div class="teoria">Crítica a James-Lange; activación central</div></td>
+    <td class="desc">Refuta a James con cinco objeciones (las vísceras 
+son insensibles, los mismos cambios aparecen en distintas emociones, 
+etc.). Propone que el tálamo activa simultáneamente la corteza 
+(experiencia) y el cuerpo (respuesta).</td>
+  </tr><tr>
+    <td><div class="author">Schachter &amp; Singer</div></td>
+    <td><span class="badge bg-fis">Fisiológica</span><div class="teoria">Teoría bifactorial</div></td>
+    <td class="desc">La emoción exige dos factores: activación 
+fisiológica inespecífica (determina intensidad) + etiquetado cognitivo 
+del contexto (determina cualidad). Experimento clásico con adrenalina y 
+cómplice euforígeno/enojado.</td>
+  </tr><tr>
+    <td><div class="author">Lacey</div></td>
+    <td><span class="badge bg-fis">Fisiológica</span><div class="teoria">Activación multidimensional / Modelos específicos</div></td>
+    <td class="desc">Cuestiona el arousal unitario. Los distintos 
+indicadores de activación (electrocortical, autonómico) se disocian y 
+correlacionan pobremente entre sí, evidenciando fraccionamiento 
+direccional e idiosincrasia de respuesta.</td>
+  </tr><tr>
+    <td><div class="author">Arnold</div></td>
+    <td><span class="badge bg-cog">Cognitiva</span><div class="teoria">Appraisal primario</div></td>
+    <td class="desc">Pionera del concepto de valoración: la emoción 
+surge de la evaluación inmediata del objeto como bueno o malo para el 
+sujeto. La valoración precede y determina la respuesta emocional.</td>
+  </tr><tr>
+    <td><div class="author">Lazarus</div></td>
+    <td><span class="badge bg-cog">Cognitiva</span><div class="teoria">Teoría cognitivo-relacional-motivacional</div></td>
+    <td class="desc">La emoción depende de la valoración primaria 
+(relevancia y congruencia con metas personales) y secundaria (potencial 
+de afrontamiento, atribución causal, expectativas futuras). Define 15 
+núcleos emocionales con su significado relacional nuclear.</td>
+  </tr><tr>
+    <td><div class="author">Scherer</div></td>
+    <td><span class="badge bg-cog">Cognitiva</span><div class="teoria">Modelo de componentes / SECs</div></td>
+    <td class="desc">La emoción es un proceso multifásico con cinco 
+componentes: evaluación cognitiva (SEC), cambios fisiológicos, 
+motivación/tendencia de acción, expresión motora y sentimiento 
+subjetivo. Las valoraciones se producen de forma secuencial.</td>
+  </tr><tr>
+    <td><div class="author">Frijda</div></td>
+    <td><span class="badge bg-cog">Cognitiva</span><div class="teoria">Leyes de la emoción / Tendencia de acción</div></td>
+    <td class="desc">Las emociones son estados de preparación para la 
+acción (action readiness). Formula las 'leyes de la emoción': 
+significación situacional, comparación, realidad aparente, cambio, 
+habituación, entre otras.</td>
+  </tr><tr>
+    <td><div class="author">Mandler</div></td>
+    <td><span class="badge bg-cog">Cognitiva</span><div class="teoria">Teoría de la interrupción</div></td>
+    <td class="desc">Las emociones surgen de la interrupción de planes o
+ esquemas de acción. La interrupción genera activación fisiológica 
+inespecífica; la cognición evalúa e interpreta esa activación para 
+determinar la cualidad emocional.</td>
+  </tr><tr>
+    <td><div class="author">Ekman</div></td>
+    <td><span class="badge bg-bio">Biológica/Neuro</span><div class="teoria">Emociones básicas y expresión universal</div></td>
+    <td class="desc">Existen 6 emociones básicas (ira, alegría, asco, 
+tristeza, sorpresa, miedo; más tarde añade desprecio) con expresión 
+facial universal e innata, confirmadas transculturalmente. Desarrolló el
+ sistema FACS de codificación facial.</td>
+  </tr><tr>
+    <td><div class="author">Tomkins</div></td>
+    <td><span class="badge bg-bio">Biológica/Neuro</span><div class="teoria">Teoría de los afectos</div></td>
+    <td class="desc">Revitalizó el enfoque evolucionista en los años 60.
+ Los afectos son programas biológicos innatos que amplifican la 
+motivación; el feedback facial es clave para su generación. Influencia 
+directa en Ekman e Izard.</td>
+  </tr><tr>
+    <td><div class="author">Plutchik</div></td>
+    <td><span class="badge bg-bio">Biológica/Neuro</span><div class="teoria">Teoría psicoevolucionista</div></td>
+    <td class="desc">Propone 8 emociones primarias adaptativas en una 
+rueda circular. Las emociones secundarias emergen de combinaciones de 
+primarias. El modelo incluye dimensiones de intensidad, similitud y 
+polaridad opuesta.</td>
+  </tr><tr>
+    <td><div class="author">LeDoux</div></td>
+    <td><span class="badge bg-bio">Biológica/Neuro</span><div class="teoria">Vía rápida / Amígdala y miedo</div></td>
+    <td class="desc">La amígdala puede lanzar respuestas de miedo 
+condicionado sin mediación cortical, vía tálamo-amígdala (vía rápida o 
+secundaria). Existe además una vía lenta tálamo-córtex-amígdala para 
+procesamiento más elaborado y preciso.</td>
+  </tr><tr>
+    <td><div class="author">Damasio</div></td>
+    <td><span class="badge bg-bio">Biológica/Neuro</span><div class="teoria">Hipótesis del marcador somático</div></td>
+    <td class="desc">Las señales somáticas de naturaleza emocional 
+(marcadores somáticos) orientan y sesgan la toma de decisiones. Su 
+sustrato es la corteza ventromedial prefrontal; lesiones allí producen 
+decisiones desadaptativas pese a cognición intacta.</td>
+  </tr><tr>
+    <td><div class="author">Öhman</div></td>
+    <td><span class="badge bg-bio">Biológica/Neuro</span><div class="teoria">Preparedness / Procesamiento preatencional</div></td>
+    <td class="desc">Los estímulos filogenéticamente relevantes 
+(serpientes, caras airadas) se condicionan y extinguen con más 
+dificultad. El sistema de miedo puede activarse de modo preatencional y 
+no consciente mediante enmascaramiento hacia atrás.</td>
+  </tr><tr>
+    <td><div class="author">Zajonc</div></td>
+    <td><span class="badge bg-soc">Emoción-cog.</span><div class="teoria">Primacía afectiva</div></td>
+    <td class="desc">Las reacciones afectivas pueden preceder e 
+independizarse del procesamiento cognitivo. El sistema afectivo y el 
+cognitivo son parcialmente separables. Debate clásico con Lazarus sobre 
+la precedencia cognición-emoción.</td>
+  </tr><tr>
+    <td><div class="author">Bower</div></td>
+    <td><span class="badge bg-soc">Emoción-cog.</span><div class="teoria">Modelo de redes asociativas</div></td>
+    <td class="desc">Emoción y cognición se integran en una red de nodos
+ semánticos y emocionales. Activar un nodo emocional propaga la 
+activación a contenidos congruentes, generando sesgos de codificación y 
+recuerdo dependiente del estado de ánimo.</td>
+  </tr><tr>
+    <td><div class="author">Schwarz &amp; Clore</div></td>
+    <td><span class="badge bg-soc">Emoción-cog.</span><div class="teoria">Afecto como información</div></td>
+    <td class="desc">Juzgamos situaciones basándonos en los sentimientos
+ que experimentamos, usándolos como señal heurística sobre si algo es 
+bueno o peligroso. El afecto actúa como 'luz roja o verde' en juicios y 
+decisiones.</td>
+  </tr><tr>
+    <td><div class="author">Forgas</div></td>
+    <td><span class="badge bg-soc">Emoción-cog.</span><div class="teoria">Modelo de infusión del afecto (AIM)</div></td>
+    <td class="desc">La influencia del afecto en la cognición depende 
+del estilo de procesamiento: es máxima en procesamiento heurístico y 
+sustancial (abierto, constructivo) y nula en directo y motivado 
+(cerrado, reconstructivo).</td>
+  </tr><tr>
+    <td><div class="author">Russell</div></td>
+    <td><span class="badge bg-soc">Emoción-cog.</span><div class="teoria">Modelo circunflejo del afecto</div></td>
+    <td class="desc">Los estados afectivos se organizan en un espacio 
+bidimensional de valencia (agradable-desagradable) × activación 
+(alta-baja). Critica la tesis de la universalidad mínima de las 
+expresiones faciales frente a Ekman.</td>
+  </tr><tr>
+    <td><div class="author">Eysenck</div></td>
+    <td><span class="badge bg-per">Personalidad</span><div class="teoria">Personalidad y emoción (PEN)</div></td>
+    <td class="desc">Tres dimensiones de personalidad: Psicoticismo, 
+Extraversión y Neuroticismo. El neuroticismo refleja labilidad emocional
+ del SNA; la extraversión se asocia al umbral de activación cortical. 
+Ambas modulan la vivencia emocional.</td>
+  </tr><tr>
+    <td><div class="author">Gutiérrez Calvo</div></td>
+    <td><span class="badge bg-per">Personalidad</span><div class="teoria">Ansiedad y procesamiento cognitivo</div></td>
+    <td class="desc">La ansiedad moviliza sesgos cognitivos: atención 
+preferente a amenazas, interpretación sesgada de ambigüedad y reducción 
+de memoria operativa. El modelo describe cómo la ansiedad facilita la 
+evaluación valorativa ante señales de peligro.</td>
+  </tr><tr>
+    <td><div class="author">Krohne</div></td>
+    <td><span class="badge bg-per">Personalidad</span><div class="teoria">Estilos de afrontamiento (vigilancia-evitación)</div></td>
+    <td class="desc">Cuatro estilos de afrontamiento de la ansiedad 
+según combinación alta/baja de vigilancia y evitación cognitiva. Los 
+represores usan alta evitación; los no defensivos, baja vigilancia y 
+baja evitación.</td>
+  </tr><tr>
+    <td><div class="author">Sternberg</div></td>
+    <td><span class="badge bg-pos">Bienestar</span><div class="teoria">Teoría triangular del amor</div></td>
+    <td class="desc">El amor tiene tres componentes: intimidad, pasión y
+ compromiso. Sus combinaciones generan tipos distintos (romántico, 
+apasionado, compañero, fatuo, vacío, pleno). El amor pleno —difícil de 
+alcanzar— requiere los tres.</td>
+  </tr><tr>
+    <td><div class="author">Bowlby</div></td>
+    <td><span class="badge bg-pos">Bienestar</span><div class="teoria">Teoría del apego</div></td>
+    <td class="desc">El apego al cuidador primario cumple función 
+adaptativa de supervivencia. El estilo de interacción temprana genera 
+apego seguro o inseguro, que actúa como modelo de trabajo 
+cognitivo-afectivo-motivacional en las relaciones adultas.</td>
+  </tr><tr>
+    <td><div class="author">Fredrickson</div></td>
+    <td><span class="badge bg-pos">Bienestar</span><div class="teoria">Teoría ampliar-y-construir</div></td>
+    <td class="desc">Las emociones positivas amplían el repertorio de 
+pensamiento y acción (flexibilidad cognitiva, creatividad) y construyen 
+recursos personales duraderos (físicos, cognitivos, sociales), 
+favoreciendo la resiliencia y el bienestar.</td>
+  </tr></tbody>
+</table>
+<div id="empty" class="empty" style="display:none">Sin resultados.</div>
+<script>
+const data=[
+  {a:"Darwin",t:"Teoría evolucionista",d:"Las emociones tienen función adaptativa y son producto de la filogenia. Existen emociones primarias con expresión facial universal e innata; la expresión emocional muestra continuidad entre especies.",cat:"bio"},
+  {a:"James / Lange",t:"Teoría periférica (James-Lange)",d:"La emoción es la percepción de los cambios corporales: sentimos miedo porque temblamos, no al revés. Cada emoción requiere un patrón somato-visceral propio y específico.",cat:"fis"},
+  {a:"Cannon",t:"Crítica a James-Lange; activación central",d:"Refuta a James con cinco objeciones (las vísceras son insensibles, los mismos cambios aparecen en distintas emociones, etc.). Propone que el tálamo activa simultáneamente la corteza (experiencia) y el cuerpo (respuesta).",cat:"fis"},
+  {a:"Schachter & Singer",t:"Teoría bifactorial",d:"La emoción exige dos factores: activación fisiológica inespecífica (determina intensidad) + etiquetado cognitivo del contexto (determina cualidad). Experimento clásico con adrenalina y cómplice euforígeno/enojado.",cat:"fis"},
+  {a:"Lacey",t:"Activación multidimensional / Modelos específicos",d:"Cuestiona el arousal unitario. Los distintos indicadores de activación (electrocortical, autonómico) se disocian y correlacionan pobremente entre sí, evidenciando fraccionamiento direccional e idiosincrasia de respuesta.",cat:"fis"},
+  {a:"Arnold",t:"Appraisal primario",d:"Pionera del concepto de valoración: la emoción surge de la evaluación inmediata del objeto como bueno o malo para el sujeto. La valoración precede y determina la respuesta emocional.",cat:"cog"},
+  {a:"Lazarus",t:"Teoría cognitivo-relacional-motivacional",d:"La emoción depende de la valoración primaria (relevancia y congruencia con metas personales) y secundaria (potencial de afrontamiento, atribución causal, expectativas futuras). Define 15 núcleos emocionales con su significado relacional nuclear.",cat:"cog"},
+  {a:"Scherer",t:"Modelo de componentes / SECs",d:"La emoción es un proceso multifásico con cinco componentes: evaluación cognitiva (SEC), cambios fisiológicos, motivación/tendencia de acción, expresión motora y sentimiento subjetivo. Las valoraciones se producen de forma secuencial.",cat:"cog"},
+  {a:"Frijda",t:"Leyes de la emoción / Tendencia de acción",d:"Las emociones son estados de preparación para la acción (action readiness). Formula las 'leyes de la emoción': significación situacional, comparación, realidad aparente, cambio, habituación, entre otras.",cat:"cog"},
+  {a:"Mandler",t:"Teoría de la interrupción",d:"Las emociones surgen de la interrupción de planes o esquemas de acción. La interrupción genera activación fisiológica inespecífica; la cognición evalúa e interpreta esa activación para determinar la cualidad emocional.",cat:"cog"},
+  {a:"Ekman",t:"Emociones básicas y expresión universal",d:"Existen 6 emociones básicas (ira, alegría, asco, tristeza, sorpresa, miedo; más tarde añade desprecio) con expresión facial universal e innata, confirmadas transculturalmente. Desarrolló el sistema FACS de codificación facial.",cat:"bio"},
+  {a:"Tomkins",t:"Teoría de los afectos",d:"Revitalizó el enfoque evolucionista en los años 60. Los afectos son programas biológicos innatos que amplifican la motivación; el feedback facial es clave para su generación. Influencia directa en Ekman e Izard.",cat:"bio"},
+  {a:"Plutchik",t:"Teoría psicoevolucionista",d:"Propone 8 emociones primarias adaptativas en una rueda circular. Las emociones secundarias emergen de combinaciones de primarias. El modelo incluye dimensiones de intensidad, similitud y polaridad opuesta.",cat:"bio"},
+  {a:"LeDoux",t:"Vía rápida / Amígdala y miedo",d:"La amígdala puede lanzar respuestas de miedo condicionado sin mediación cortical, vía tálamo-amígdala (vía rápida o secundaria). Existe además una vía lenta tálamo-córtex-amígdala para procesamiento más elaborado y preciso.",cat:"bio"},
+  {a:"Damasio",t:"Hipótesis del marcador somático",d:"Las señales somáticas de naturaleza emocional (marcadores somáticos) orientan y sesgan la toma de decisiones. Su sustrato es la corteza ventromedial prefrontal; lesiones allí producen decisiones desadaptativas pese a cognición intacta.",cat:"bio"},
+  {a:"Öhman",t:"Preparedness / Procesamiento preatencional",d:"Los estímulos filogenéticamente relevantes (serpientes, caras airadas) se condicionan y extinguen con más dificultad. El sistema de miedo puede activarse de modo preatencional y no consciente mediante enmascaramiento hacia atrás.",cat:"bio"},
+  {a:"Zajonc",t:"Primacía afectiva",d:"Las reacciones afectivas pueden preceder e independizarse del procesamiento cognitivo. El sistema afectivo y el cognitivo son parcialmente separables. Debate clásico con Lazarus sobre la precedencia cognición-emoción.",cat:"soc"},
+  {a:"Bower",t:"Modelo de redes asociativas",d:"Emoción y cognición se integran en una red de nodos semánticos y emocionales. Activar un nodo emocional propaga la activación a contenidos congruentes, generando sesgos de codificación y recuerdo dependiente del estado de ánimo.",cat:"soc"},
+  {a:"Schwarz & Clore",t:"Afecto como información",d:"Juzgamos situaciones basándonos en los sentimientos que experimentamos, usándolos como señal heurística sobre si algo es bueno o peligroso. El afecto actúa como 'luz roja o verde' en juicios y decisiones.",cat:"soc"},
+  {a:"Forgas",t:"Modelo de infusión del afecto (AIM)",d:"La influencia del afecto en la cognición depende del estilo de procesamiento: es máxima en procesamiento heurístico y sustancial (abierto, constructivo) y nula en directo y motivado (cerrado, reconstructivo).",cat:"soc"},
+  {a:"Russell",t:"Modelo circunflejo del afecto",d:"Los estados afectivos se organizan en un espacio bidimensional de valencia (agradable-desagradable) × activación (alta-baja). Critica la tesis de la universalidad mínima de las expresiones faciales frente a Ekman.",cat:"soc"},
+  {a:"Eysenck",t:"Personalidad y emoción (PEN)",d:"Tres dimensiones de personalidad: Psicoticismo, Extraversión y Neuroticismo. El neuroticismo refleja labilidad emocional del SNA; la extraversión se asocia al umbral de activación cortical. Ambas modulan la vivencia emocional.",cat:"per"},
+  {a:"Gutiérrez Calvo",t:"Ansiedad y procesamiento cognitivo",d:"La ansiedad moviliza sesgos cognitivos: atención preferente a amenazas, interpretación sesgada de ambigüedad y reducción de memoria operativa. El modelo describe cómo la ansiedad facilita la evaluación valorativa ante señales de peligro.",cat:"per"},
+  {a:"Krohne",t:"Estilos de afrontamiento (vigilancia-evitación)",d:"Cuatro estilos de afrontamiento de la ansiedad según combinación alta/baja de vigilancia y evitación cognitiva. Los represores usan alta evitación; los no defensivos, baja vigilancia y baja evitación.",cat:"per"},
+  {a:"Sternberg",t:"Teoría triangular del amor",d:"El amor tiene tres componentes: intimidad, pasión y compromiso. Sus combinaciones generan tipos distintos (romántico, apasionado, compañero, fatuo, vacío, pleno). El amor pleno —difícil de alcanzar— requiere los tres.",cat:"pos"},
+  {a:"Bowlby",t:"Teoría del apego",d:"El apego al cuidador primario cumple función adaptativa de supervivencia. El estilo de interacción temprana genera apego seguro o inseguro, que actúa como modelo de trabajo cognitivo-afectivo-motivacional en las relaciones adultas.",cat:"pos"},
+  {a:"Fredrickson",t:"Teoría ampliar-y-construir",d:"Las emociones positivas amplían el repertorio de pensamiento y acción (flexibilidad cognitiva, creatividad) y construyen recursos personales duraderos (físicos, cognitivos, sociales), favoreciendo la resiliencia y el bienestar.",cat:"pos"},
+];
+const cats={fis:"bg-fis",cog:"bg-cog",bio:"bg-bio",soc:"bg-soc",per:"bg-per",pos:"bg-pos"};
+const lbls={fis:"Fisiológica",cog:"Cognitiva",bio:"Biológica/Neuro",soc:"Emoción-cog.",per:"Personalidad",pos:"Bienestar"};
+function render(rows){
+  const tb=document.getElementById("tb");
+  const em=document.getElementById("empty");
+  if(!rows.length){tb.innerHTML="";em.style.display="block";return}
+  em.style.display="none";
+  tb.innerHTML=rows.map(r=>`<tr>
+    <td><div class="author">${r.a}</div></td>
+    <td><span class="badge ${cats[r.cat]}">${lbls[r.cat]}</span><div class="teoria">${r.t}</div></td>
+    <td class="desc">${r.d}</td>
+  </tr>`).join("");
+}
+function filter(){
+  const q=document.getElementById("q").value.toLowerCase();
+  const cat=document.getElementById("cat").value;
+  let rows=data;
+  if(cat) rows=rows.filter(r=>r.cat===cat);
+  if(q) rows=rows.filter(r=>(r.a+r.t+r.d).toLowerCase().includes(q));
+  render(rows);
+}
+render(data);
+</script>
+
+
+</body><div class="inspiringbenefits-wrapper" style="z-index: 2147483647; display: block;"></div></html>
